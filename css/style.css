@@ -1,0 +1,336 @@
+﻿.navbar {
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-bottom: 0;
+}
+
+.navbar ul li {
+    display: inline-block;
+}
+
+.navbar ul li a {
+    display: block;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.navbar ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+
+.backgrounds {
+    display: none;
+    padding: 8px 8px 8px 32px;
+}
+
+.sidenav img {
+    padding: 5px 5px;
+}
+
+
+
+.card {
+    margin-left: 25px;
+    border: 2px solid #E6E6E6;
+    min-width: 330px;
+    max-width: 330px;
+}
+
+.card-title {
+    width: 12rem;
+    margin: 2px;
+    border: none;
+    background-color: transparent;
+}
+
+#AddNewList {
+    padding: 2px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.creationCard {
+    border-radius: 3px;
+    margin-left: 8px;
+    padding: 3px;
+    width: 17rem;
+}
+
+.creationCard:hover {
+    background-color: #bbbbbb;
+}
+
+.listColors span {
+    margin: 10px;
+}
+
+body {
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+    position: sticky;
+    overflow: hidden;
+}
+
+.card-body {
+    overflow: auto;
+}
+
+.card-body::-webkit-scrollbar {
+    width: 20px;
+}
+
+.card-body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+    background-color: #bbbbbb;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+.card-body::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+.modal-body {
+    overflow: auto;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 20px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #bbbbbb;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+#scrollbar {
+    overflow: auto;
+    max-width: 100%;
+    height: 620px;
+}
+
+#scrollbar::-webkit-scrollbar {
+    width: 20px;
+}
+
+#scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+#scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+#RegisterFormView, #UpdateUser {
+    overflow-y: scroll;
+}
+
+form {
+    background-color: white;
+    border-radius: 8px;
+    padding: 50px;
+    margin: auto;
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ebebeb;
+}
+
+.Submitbutton{
+    background-color: #98ded9;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+    height: 50px;
+    color: white;
+}
+.AddBoardAfterCreated {
+    background-color: #98ded9;
+    border-radius: 4px;
+    border: none;
+    height: 50px;
+    color: white;
+}
+.headersign {
+    font-weight: bold;
+    font-size: larger;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: none;
+    background-color: white;
+}
+
+.signin {
+    border-bottom: 3px solid #98ded9;
+}
+
+#PasswordValidation {
+    display: none;
+    position: relative;
+    padding: 20px 0px 20px 20px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
+#PasswordValidation p {
+        padding: 0px 40px;
+        font-size: 18px;
+    }
+
+#PasswordValidation h3 {
+        padding-bottom: 15px;
+    }
+
+#EmailValidation,
+#ConfirmPasswordValidation {
+    display: none;
+    position: relative;
+    padding: 30px 15px 0px 15px;
+}
+
+#EmailValidation p,
+#ConfirmPasswordValidation p {
+    padding: 5px 35px;
+    font-size: 18px;
+}
+
+.validd {
+    color: green;
+}
+
+.validd:before {
+    position: relative;
+    left: -25px;
+    content: "✔";
+}
+
+.invalidd {
+    color: red;
+}
+
+.invalidd:before {
+    position: relative;
+    left: -25px;
+    content: "✖";
+}
+
+
+.textarea-container {
+    position: relative;
+}
+
+.textarea-container textarea {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.textarea-container .btnhover {
+    position: absolute;
+    top: 3px;
+    right: -3px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #bbbbbb;
+    display: none;
+}
+.HelloUser {
+    line-height: 20px;
+}
+.HelloUser:hover {
+    font-size: 20px;
+}
+.phover {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+.phover:hover {
+    color: indigo;
+    font-size: 20px;
+    font-weight: bold;
+}

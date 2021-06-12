@@ -1,0 +1,72 @@
+﻿@model Final_Project_Management_System.ViewModels.BoardBoards
+@{
+    ViewBag.Title = "GetBoards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body id="OpenCreateBoards" class="justify-content-center align-items-center" style="height: 100vh;">
+
+
+
+<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="myModal" style="margin-top: 120px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Existing Boards</h5>
+            </div>
+            
+
+            <div class="modal-body" style="padding-bottom: 0px; max-height: 200px">
+             
+                @if (Model.Boards.Count() == 0)
+                {
+                    <center><p>You don't have any boards yet !</p></center>
+                }
+                @foreach (var board in Model.Boards)
+                    {
+                        <center> @Html.ActionLink(board.Name, "BoardView", "Board", new {id = board.Id}, new {@class = "text-dark phover", style = "text-decoration:none;"})</center>
+                        <br/>
+                    }
+
+            </div>
+            
+
+            <div class="modal-footer">
+                <button class="AddBoardAfterCreated" onclick="AddBoardAfterCreated(this)">New Board</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    
+<script>
+    function AddBoardAfterCreated(item) {
+        $(item).parents(".modal-footer").siblings(".modal-body").append(`
+        @using (Html.BeginForm("AddBoard", "Board", Model.Board, FormMethod.Post, new {@class = "prevForm", style = "padding:17px;"}))
+        {
+            <div class="form-floating">
+            @Html.TextBoxFor(b => b.Board.Name, new {placeholder = "Board Name", @class = "form-control", style = "width:100%;"})
+            @Html.LabelFor(b => b.Board.Name)
+        </div>
+            <br/>
+            @Html.HiddenFor(b => b.Board.UserId, new {value = @Model.User.Id})
+            @Html.HiddenFor(b => b.Board.Background, new {value = "url('../../images/4.jpg')"})
+            <button class="btn btn-dark" type="submit">Add Board</button>
+            <button onclick="closeBoard(this)" class="btn btn-dark" style="margin-left:5px;" >&times;</button>
+        }`);
+        $(".modal-body")[0].scrollTop += 300;
+    }
+
+    function closeBoard(item) {
+        $(".prevForm").submit(function(e){
+            e.preventDefault();
+        });
+        $(item).parents(".prevForm").last().css("display", "none");
+    }
+</script>
+
+<body>
+

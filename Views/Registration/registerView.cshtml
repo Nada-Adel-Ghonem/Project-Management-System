@@ -1,0 +1,70 @@
+﻿@model  Final_Project_Management_System.Models.User
+@{
+    ViewBag.Title = "registerView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body id="RegisterFormView" class=" align-items-center justify-content-center" style="height: 100vh;">
+
+   
+
+    @using (@Html.BeginForm("AddUser", "Registration"))
+    {
+        @Html.ValidationSummary("", new { @class = "text-danger" });
+        <div class="form-floating">
+            @Html.TextBoxFor(u => u.Name, new { @class = "form-control", id = "Name", placeholder = "Name" })
+            @Html.LabelFor(u => u.Name)
+
+        </div>
+
+        <br />
+
+        <div class="form-floating">
+            @Html.TextBoxFor(u => u.E_mail, new { @class = "form-control", placeholder = "Email address", id = "Emailup", onblur = "hideEmailValidation(this)", onfocus = "displayEmailValidation(this)", onkeyup = "validateEmail()" })
+            @Html.LabelFor(u => u.E_mail)
+
+
+            <div id="EmailValidation">
+                <p id="checkedd" class="invalidd"><b>valid email</b></p>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-floating">
+            @Html.TextBoxFor(u => u.Password, new { @class = "form-control", type = "password", placeholder = "Password", id = "PasswordUp", onblur = "hidePasswordValidation(this)", onfocus = "displayPasswordValidation(this)", onkeyup = "validatePassword()" })
+            @Html.LabelFor(u => u.Password)
+            <div id="PasswordValidation">
+                <h3>Password must contain the following:</h3>
+                <p id="SmallLetter" class="invalidd">A <b>lowercase</b> letter</p>
+                <p id="CapitalLetter" class="invalidd">A <b>capital (uppercase)</b> letter</p>
+                <p id="NumberChar" class="invalidd">A <b>number</b></p>
+                <p id="PasswordLength" class="invalidd">Minimum <b>8 characters</b></p>
+            </div>
+        </div>
+
+
+        <br />
+
+        <div class="form-floating">
+            @Html.TextBoxFor(u => u.ConfirmPassword, new { @class = "form-control", type = "password", placeholder = "confirm Password", id = "confirmPassword", onblur = "hideConfirmPasswordValidation(this)", onfocus = "displayConfirmPasswordValidation(this)", onkeyup = "validateConfirmPassword()" })
+            @Html.LabelFor(u => u.ConfirmPassword)
+
+            <div id="ConfirmPasswordValidation">
+                <p id="accuratee" class="invalidd"><b>accurate password</b></p>
+            </div>
+        </div>
+
+        <br/>
+
+        @Html.HiddenFor(u => u.Id)
+        <button class="Submitbutton" type="submit"><strong>SIGN UP</strong></button>
+
+        <br />
+
+        @Html.ActionLink("Already have an account?", "Index", null, new { style = "float:right;text-decoration:none;", @class = "text-dark" })
+
+    }
+    
+<body>
+       

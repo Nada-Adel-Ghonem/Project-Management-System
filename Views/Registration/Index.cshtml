@@ -1,0 +1,49 @@
+﻿@using Microsoft.Ajax.Utilities
+@model  Final_Project_Management_System.Models.User
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body id="LogInFormView" class="justify-content-center align-items-center" style="height: 100vh;">
+
+
+@using (@Html.BeginForm("LogIn", "Registration"))
+    {
+        <p class="invalidPassword text-danger" style="display: none;margin-left: 0px">Invalid username or password</p>
+
+        <div class="form-floating">
+            @Html.TextBoxFor(u => u.E_mail, new { @class = "form-control", placeholder = "Email address" })
+            @Html.LabelFor(u => u.E_mail)
+            @Html.ValidationMessageFor(u => u.E_mail, "", new { @class = "text-danger" })
+
+        </div>
+
+        <br />
+            
+        <div class="form-floating">
+            @Html.TextBoxFor(u => u.Password, new { id = "LogInPassword", @class = "form-control", type = "password", placeholder = "Password" })
+            @Html.LabelFor(u => u.Password)
+            @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+
+        </div>
+
+        <br />
+      
+        <button class="Submitbutton" ><strong>log in</strong></button>
+        <br />
+
+
+        @Html.ActionLink("Don't have an account?", "registerView", null, new { style = "float:right;text-decoration:none;", @class = "text-dark" })
+    }
+
+
+
+<script>
+    window.onload = function () {
+        if ($("#LogInPassword").val() !== "") {
+            $(".invalidPassword").toggle();
+        }
+    }
+</script>
+
+<body>

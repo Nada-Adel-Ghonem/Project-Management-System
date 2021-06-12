@@ -1,0 +1,115 @@
+﻿@model Final_Project_Management_System.ViewModels.UserBoardsListsEvents
+@{
+    ViewBag.Title = "BoardView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body data-board-id="@Model.board.Id" data-board-name="@Model.board.Name" data-board-userid="@Model.board.UserId" id="Board" data-board-background="@Model.board.Background" style="padding-top: 0px; ">
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <a href="#" onclick="openBoards()">Boards &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i id="plusBoards" class='fas fa-plus' style='font-size:24px'></i></a>
+        @foreach (var Boardobj in Model.SideMenuBoards)
+        {
+            if (Boardobj.Id == Model.board.Id)
+            {
+               <a class="SideMenuBoards" disabled="disabled" style="font-size: 20px;color: white;text-decoration:none;display:none;margin-left:10px;">@Boardobj.Name (Current)</a>
+            }
+            else
+            {
+                @Html.ActionLink(Boardobj.Name, "BoardView", "Board", new {id = Boardobj.Id}, new {style = "text-decoration:none;display:none;margin-left:10px;font-size: 20px;", @class = "SideMenuBoards"})
+            }
+        }
+
+
+        <div id="halfMenu">
+            <a href="#" onclick="openCloseBackgrounds()">Backgrounds	&nbsp;&nbsp; <i id="plusBackgrounds" class='fas fa-plus' style='font-size:24px'></i></a>
+
+            <div class="backgrounds">
+                <img src="~/images/2.jpg" style="width:110px;height:75px;" onclick="changeBackground(0)" />
+                <img src="~/images/3.jpg" style="width:110px;height:75px;" onclick="changeBackground(1)" />
+                <img src="~/images/4.jpg" style="width:110px;height:75px;" onclick="changeBackground(2)" />
+                <img src="~/images/6.jpg" style="width:110px;height:75px;" onclick="changeBackground(3)" />
+                <img src="~/images/7.jpg" style="width:110px;height:75px;" onclick="changeBackground(4)" />
+                <img src="~/images/8.jpg" style="width:110px;height:75px;" onclick="changeBackground(5)" />
+                <img src="~/images/9.jpg" style="width:110px;height:75px;" onclick="changeBackground(6)" />
+                <img src="~/images/13.jpg" style="width:110px;height:75px;" onclick="changeBackground(7)" />
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="main">
+
+        <nav class="navbar">
+            <ul>
+                <li style="font-size:30px;cursor:pointer;color: white;" onclick="openNav()">&#9776; Menu</li>
+            </ul>
+            <div style="float: right;">
+                @Html.ActionLink("Hello " + @Model.user.Name + " !","UpdateUser","Registration",new{ userId = Model.board.UserId, BoardId = Model.board.Id },new{@class= "text-light HelloUser", style= "text-decoration:none;font-weight: bolder;margin:10px 20px;display:inline-block;" })
+                @Html.ActionLink("Log out","Index","Registration",null,new{@class= "text-light HelloUser", style= "margin:10px 20px;text-decoration:none;display:inline-block;" })
+            </div>
+         </nav>
+
+        <br /><br />
+        <br /><br />
+        <div id="scrollbar">
+            <div data-board-name="@Model.board.Name" data-board-numOf-lists="@Model.board.NumOfLists" data-board-userId="@Model.board.UserId" data-board-id=@Model.board.Id class="board" style="display: flex; align-items: flex-start;">
+
+                <!----------------------------------------------------->
+                @foreach (var list in Model.Lists)
+                {
+                 
+                <div data-list-id="@list.Id" class="card" style="display:inline-block; background-color: #E6E6E6; border-color: transparent;">
+
+                    <input onfocus="lightListHeader(this)" onchange="updateListHeader(this)" onfocusout="darkListHeader(this)" class="card-header" placeholder="Card Title" style="font-weight: bold;width: 77%;border:none; background-color: transparent; margin: 3px; margin-left: 15px;" value="@list.Name">
+                    
+                    <button onclick="closeList(this)" class="btn" style="font-size: 36px;margin-left:5px;">&times;</button>
+                 
+                    <div data-numof-events="@list.NumOfEvents" class="card-body" style="max-height: 530px; overflow-y: auto; padding-right: 8px;">
+                        @foreach (var eventt in Model.Events)
+                        {
+                            if (eventt.ListId == list.Id)
+                            {
+                                <div data-event-id="@eventt.Id" class="sign" style="width: 280px; margin-right: 0px;">
+                                    <div class="textarea-container">
+                                        <textarea onchange="updateEvent(this)" class="newCard" onmouseover="CardHoverOn(this)" onmouseleave="CardHoverOff(this)" name="Description" style="margin: 3px; border-radius: 4px;" cols="25">@eventt.Description </textarea>
+                                        <button onclick="closeCard(this)" onmouseover="CloseCardHoverOn(this)" onmouseleave="CloseCardHoverOff(this)" class="btn btnhover">&times;</button>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="creationCard" onclick="AddNewCard(this)" style="margin-top: 10px;">
+                            <i class='fas fa-plus' style='font-size: 16px; margin-right: 5px;'></i>
+                            <strong>Add another card</strong>
+                        </div>
+                    </div>
+                </div>
+                }
+                <!----------------------------------------------------->
+
+            <div id="creationList" class="card text-dark bg-transparent" style="min-width: 300px;max-width: 300px;height: 50px; border-radius: 10px;">
+
+                <center><a id="AddNewList" href="#" class="card-title" onclick="AddNewList(this)">&nbsp;&nbsp;Add New List&nbsp;&nbsp;<i class='fas fa-plus' style='font-size: 24px;'></i></a></center>
+
+            </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var background = $("#Board").attr("data-board-background");
+            $("#Board").css("backgroundImage",background);
+        });
+    </script>
+}
